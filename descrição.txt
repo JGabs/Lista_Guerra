@@ -1,0 +1,15 @@
+Crie uma biblioteca que implemente as seguintes operações sobre conjuntos usando listas encadeadas.
+
++ inserir um elemento (lembrando que não podem haver elementos repetidos em um conjunto)
+
++ remover um elemento do conjunto
+
++ consultar se um elemento faz parte do conjunto
+
++ consultar se um conjunto está contido em outro conjunto
+
++ consultar se um conjunto contém outro conjunto
+
++ fazer a união de dois conjuntos (lembrando que não podem haver elementos repetidos em um conjunto)
+
++ calcular a interseção de dois conjuntos
