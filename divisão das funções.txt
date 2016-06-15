@@ -1,0 +1,11 @@
+Daniel
+    unir;
+    intersec;
+Lobo
+    verificar_contem;
+    inserir;
+Roland
+    verificar;
+    remover_elemento;
+João
+    verificar_contido;

@@ -23,7 +23,7 @@ int verificar_contido (struct conjunto * ca, struct conjunto * cb) {
     return 0;
 }
 //Verifica se um conjunto contem outro. Retorna 0, caso falso e 1, caso verdadeiro.
-int verficar_contem (struct conjunto *ca, struct conjunto * cb) {
+int verificar_contem (struct conjunto *ca, struct conjunto * cb) {
 
     return 1;
 

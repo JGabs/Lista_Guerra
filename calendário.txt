@@ -1,0 +1,27 @@
+ 20/06
+    - Verificar o que já está feito;
+    - Discutir o que deve ser melhorado;
+
+24/06
+    - Verificar o que já está feito;
+    - Discutir o que deve ser melhorado;
+    - Possivelmente redistribuir as funções;
+
+26/06
+    - E-mail para o Guerra comunicando exclusão de quem não estiver contribuindo (caso necessário);
+
+27/06
+    - Verificar o que já está feito;
+    - Discutir o que deve ser melhorado;
+    - Possivelmente redistribuir funções;
+    - Procurar casos que podem causar erros no programa;
+
+04/07
+    - Buscar erros no código;
+    - Discutir o que deve ser melhorado;
+
+08/07
+    - Commit final;
+
+09/07
+    - Entrega do trabalho;
