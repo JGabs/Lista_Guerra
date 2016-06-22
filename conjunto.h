@@ -2,6 +2,9 @@
 #ifndef CONJUNTO_H //Verifica se a biblioteca ja foi carregada no programa
 
 #define CONJUNTO_H
+//simulacao de tipo booleanos para melhor clareza do codigo
+#define TRUE 1
+#define FALSE 0
 
 #include <stdlib.h>
 /*
