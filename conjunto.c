@@ -22,11 +22,11 @@ int verificar_contido (conjunto * ca, conjunto * cb) {
     *   A unica outra forma de a saida ser FALSE, e' o caso de tanto ca quanto cb serem diferentes de NULL, onde deverao ser testastos os seus valores. Portanto, o programa faz uma das verificacoes que possam dar em FALSE, caso nao seja (else), ele faz a segunda. Se nenhum dos dois casos FALSE acontecerem, o retorno e' TRUE.
     *===========================================================================================================================================
     */
-    if ( (ca != NULL) && (cb == NULL))//Primeira possibilidade de retornar FALSE.
+    if ((ca != NULL) && (cb == NULL)) {     //Primeira possibilidade de retornar FALSE.
         return FALSE;
-    else {
+    } else {
         while (ca != NULL) {
-            if ( verificar (cb, ca->numero) == 0)//Segunda possibilidade de retornar FALSE.
+            if (verificar (cb, ca->numero) == 0)    //Segunda possibilidade de retornar FALSE.
                 return FALSE;
 
             ca = ca->prox;
@@ -40,14 +40,43 @@ int verificar_contido (conjunto * ca, conjunto * cb) {
 //Verifica se um conjunto contem outro. Retorna 0, caso falso e 1, caso verdadeiro.
 int verificar_contem (conjunto *ca, conjunto * cb) {
 
-    return TRUE;
+if ((Ca == NULL) && (Cb == NULL)) {     //Verifica se os dois conjuntos são vazios
+		return FALSE;
+	} else if (Cb == NULL) {    //se ca for vazio e cb nao, ca nao contem cb
+		return FALSE;
+    } else if (Ca == NULL) {     //se cb for vazio e ca nao, ca contem cb
+        return TRUE;
+    } else {    //se nenhum dos dois for vazio, verifica os elementos de cada um
+		while (Cb != NULL) {
+			if (verificar(Ca,Cb->numero) == 0) {
+				return FALSE;
+			}
 
-    return FALSE;
+			Cb = Cb->prox;
+		}
+	}
+
+	return TRUE;
+
 }
 //Insere um elemento no conjunto, caso ja nao exista uma ocorrencia do mesmo no conjunto.
 conjunto * inserir (conjunto * c, int numero) {
 
-    return c;
+	if (C != NULL) {   //verifica se o conjunto é nulo
+		if (verificar(C, numero) == 1) {  //se não for, verifica se existe uma ocorrência do número
+			return C;
+		}
+	}
+
+	conjunto * novo = (conjunto *) malloc(sizeof(conjunto));
+	conjunto * aux = C;
+
+	novo->numero = numero;
+	novo->prox = aux;
+	C = novo;
+
+	return C;
+
 }
 //Remove um elemento do conjunto.
 conjunto * remover_elemento (conjunto * c, int numero) {
@@ -57,30 +86,46 @@ conjunto * remover_elemento (conjunto * c, int numero) {
 //Realiza a uniao de dois conjuntos em um novo.
 conjunto * unir (conjunto * ca, conjunto * cb) {
 	conjunto * uniao = NULL;
-	while (ca!=NULL) {//insere todo conjunto a em uniao
-		inserir (uniao,ca->numero);
-		ca=ca->prox;
+
+    while (ca != NULL) {    //insere todo conjunto a em uniao
+		inserir (uniao, ca->numero);
+
+        ca = ca->prox;
 	}
-	while (cb!=NULL) {//percorre o conjunto b
-		if (verificar(uniao,cb->numero)==0) inserir(uniao,cb->numero); // se o conjunto uniao nao tiver o elemento no qual o ponoteiro esta (lembrando que ele esta percorrendo a lista) insere esse elemeneto
-		cb=cb->prox;
+
+	while (cb != NULL) {     //percorre o conjunto b
+        // se o conjunto uniao nao tiver o elemento no qual o ponoteiro esta (lembrando que ele esta percorrendo a lista) insere esse elemeneto
+        if (verificar(uniao, cb->numero) == 0) {
+            inserir(uniao, cb->numero);
+        }
+
+		cb = cb->prox;
 	}
+
     return uniao;
+
 }
 //Realiza a intersecao de dois conjunto em um novo.
 conjunto * intersec (conjunto * ca, conjunto * cb) {
+    //em um futuro sera preciso retornar ao inico da lista por isso um ponteiro pra percorrer e outro pra marcar o inicio
     conjunto * intersecao = NULL;
-	conjunto * percorre_cb = cb;//em um futuro sera preciso retornar ao inico da lista por isso um ponteiro pra percorrer e outro pra marcar o inicio
-	while (ca!=NULL){// percorre a lista a
-		while (percorre_cb!=NULL) {// percorre a lista b
-			if (ca->numero == percorre_cb->numero){// se algum elemento coencidir
-				inserir (intersecao,ca->numero);// adicione esse elemento
-				break;// e pare de percorrer a lista b
+	conjunto * percorre_cb = cb;
+
+	while (ca != NULL) {   // percorre a lista a
+		while (percorre_cb != NULL) {     // percorre a lista b
+			if (ca->numero == percorre_cb->numero) {     // se algum elemento coencidir
+				inserir (intersecao, ca->numero);   // adicione esse elemento
+				break;      // e pare de percorrer a lista b
 			}
-			percorre_cb=percorre_cb->prox;
+
+			percorre_cb = percorre_cb->prox;
 		}
-		percorre_cb=cb;//volta ao inicio da lista b, para comparar ela toda com o proximo elemento de a
-		ca=ca->prox;
+
+		percorre_cb = cb;     //volta ao inicio da lista b, para comparar ela toda com o proximo elemento de a
+		ca = ca->prox;
+
 	}
+
     return intersecao;
+
 }
