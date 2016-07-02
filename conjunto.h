@@ -18,6 +18,10 @@ struct conjunto {
     int numero;
     conjunto * prox;
 };
+
+//verfica se um elemento esta contido no conjunto.
+int verificar(conjunto * C, int numero);
+
 //Verifica se um conjunto esta contido em outro. Retorna 1, caso verdadeiro e 0, caso falso.
 int verificar_contido (conjunto * ca, conjunto * cb);
 
@@ -28,7 +32,7 @@ int verificar_contem (conjunto *ca, conjunto * cb);
 conjunto * inserir (conjunto * c, int numero);
 
 //Remove um elemento do conjunto.
-conjunto * remover_elemento (conjunto * c, int numero);
+void remover_elemento (conjunto * c, int numero);
 
 //Realiza a uniao de dois conjuntos em um novo.
 conjunto * unir (conjunto * ca, conjunto * cb);
