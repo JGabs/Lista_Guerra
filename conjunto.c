@@ -9,13 +9,13 @@ int verificar(conjunto * C, int numero) {
 		if (C->numero == numero) {
 			return TRUE;
 		}
-		
+
 		C = C->prox;
-		
+
 	}
-	
+
 	return FALSE;
-	
+
 }
 
 //Verifica se um conjunto esta contido em outro. Retorna TRUE, caso verdadeiro e FALSE, caso falso.
@@ -52,19 +52,19 @@ int verificar_contido(conjunto * ca, conjunto * cb) {
 //Verifica se um conjunto contem outro. Retorna 0, caso falso e 1, caso verdadeiro.
 int verificar_contem(conjunto *ca, conjunto * cb) {
 
-if ((Ca == NULL) && (Cb == NULL)) {     //Verifica se os dois conjuntos são vazios
+	if ((ca == NULL) && (cb == NULL)) {     //Verifica se os dois conjuntos são vazios
 		return FALSE;
-	} else if (Cb == NULL) {    //se ca for vazio e cb nao, ca nao contem cb
+	} else if (cb == NULL) {    //se ca for vazio e cb nao, ca nao contem cb
 		return FALSE;
-    } else if (Ca == NULL) {     //se cb for vazio e ca nao, ca contem cb
+    } else if (ca == NULL) {     //se cb for vazio e ca nao, ca contem cb
         return TRUE;
     } else {    //se nenhum dos dois for vazio, verifica os elementos de cada um
-		while (Cb != NULL) {
-			if (verificar(Ca,Cb->numero) == FALSE) {
+		while (cb != NULL) {
+			if (verificar(ca,cb->numero) == FALSE) {
 				return FALSE;
 			}
 
-			Cb = Cb->prox;
+			cb = cb->prox;
 		}
 	}
 
@@ -73,52 +73,52 @@ if ((Ca == NULL) && (Cb == NULL)) {     //Verifica se os dois conjuntos são vaz
 }
 
 //Insere um elemento no conjunto, caso ja nao exista uma ocorrencia do mesmo no conjunto.
-conjunto * inserir(conjunto * C, int numero) {
+conjunto * inserir(conjunto * c, int numero) {
 
-	if (C != NULL){ // verifica se o conjunto é nulo
-		if (verificar(C, numero) == TRUE){ // se não for, verifica se existe uma ocorrência do número 
-			return C;
+	if (c != NULL){ // verifica se o conjunto é nulo
+		if (verificar(c, numero) == TRUE){ // se não for, verifica se existe uma ocorrência do número
+			return c;
 		}
 	}
 
 	conjunto * novo = (conjunto *) malloc(sizeof(conjunto));
-	
+
 	novo->numero = numero;
-	novo->prox = C;
-	C = novo;
-	
-	return C;
-	
+	novo->prox = c;
+	c = novo;
+
+	return c;
+
 }
 
 //Remove um elemento do conjunto.
-conjunto * remover_elemento(conjunto * c, int numero) {
-   
+void remover_elemento(conjunto * c, int numero) {
+
     conjunto * anterior = NULL;
     conjunto * p = c;
-	
+
     while ((p != NULL) && (p->numero != numero)) { // percorre o conjunto mantendo referência ao anterior
 		anterior = p;
 		p = p->prox;
 	}
-	
+
     if (p == NULL) {
-        return c; // não achou
+        return; // não achou
 	}
     if (anterior == NULL) {
-		c = p->prox; // retira elemento do início 
+		c = p->prox; // retira elemento do início
 	} else {
-		anterior->prox = p->prox; //retira elemento do meio 
+		anterior->prox = p->prox; //retira elemento do meio
 	}
 	free(p);
-	
-    return c;
-	
+
+    return;
+
 }
 
 //Realiza a uniao de dois conjuntos em um novo.
 conjunto * unir(conjunto * ca, conjunto * cb) {
-	
+
 	conjunto * uniao = NULL;
 
     while (ca != NULL) {    //insere todo conjunto a em uniao
