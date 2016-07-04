@@ -3,7 +3,7 @@ ERROS:
 
     inserir usava ponteiros C que estava declarado como c. CORRIGIDO!
 
-    remover_elemento está com erro ao remover o último elemento. (código que gera o erra está no main.c, linhas 30 ~ 38)
+    remover_elemento está com erro ao remover o primeiro elemento. CORRIGIDO!
 
     verificar_contem:
         1) está com erro de lógica quando dois conjuntos são iguais e vazios. (código que gera o erra está no main.c, linhas 19 ~ 29)

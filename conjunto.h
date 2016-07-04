@@ -32,7 +32,13 @@ int verificar_contem (conjunto *ca, conjunto * cb);
 conjunto * inserir (conjunto * c, int numero);
 
 //Remove um elemento do conjunto.
-void remover_elemento (conjunto * c, int numero);
+conjunto * remover_elemento (conjunto * c, int numero);
+
+//Soma dois conjuntos.
+conjunto * somar (conjunto * ca, conjunto * cb);
+
+//Subtrai um conjunto de outro.
+conjunto * subtrair (conjunto * ca, conjunto * cb);
 
 //Realiza a uniao de dois conjuntos em um novo.
 conjunto * unir (conjunto * ca, conjunto * cb);

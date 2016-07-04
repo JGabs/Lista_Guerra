@@ -15,6 +15,7 @@ void imprimir(conjunto * lista) {
 int main() {
     conjunto * conjunto_a = NULL;
     conjunto * conjunto_b = NULL;
+	conjunto * teste = NULL;
 
     //código que gera erro em verificar_contem:
     //=================================================================
@@ -26,15 +27,12 @@ int main() {
     else
         printf("ERRO\n");
     */
-    //=================================================================
-    //codigo que gera erro em remover_elemento:
-    //===================================================
+    
+	
     for (int i = 0; i < 15; i += 2)
         conjunto_a = inserir(conjunto_a, i);
-    /*
-    remover_elemento(conjunto_a, 14);
-    imprimir(conjunto_a);
-    */
+    
+    
     //====================================================
     //codigo que gera erro em verificar_contem:
     //============================================================
@@ -57,8 +55,8 @@ int main() {
     */
     //===============================================================
 
-    for (int i = 0; i < 15; i++)
-        conjunto_b = inserir(conjunto_b, i);
+    
+	
 
     return 0;
 }

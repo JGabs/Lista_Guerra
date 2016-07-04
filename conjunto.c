@@ -92,7 +92,7 @@ conjunto * inserir(conjunto * c, int numero) {
 }
 
 //Remove um elemento do conjunto.
-void remover_elemento(conjunto * c, int numero) {
+conjunto * remover_elemento(conjunto * c, int numero) {
    
     conjunto * anterior = NULL;
     conjunto * p = c;
@@ -103,7 +103,7 @@ void remover_elemento(conjunto * c, int numero) {
 	}
 	
     if (p == NULL) {
-        return; // não achou
+        return c; // não achou
 	}
     if (anterior == NULL) {
 		c = p->prox; // retira elemento do início 
@@ -112,55 +112,87 @@ void remover_elemento(conjunto * c, int numero) {
 	}
 	free(p);
 	
-    return;
+    return c;
 	
 }
+
+//Soma dois conjuntos.
+ conjunto * somar (conjunto * ca, conjunto * cb) {
+	
+	conjunto * c = NULL;
+	
+	while (ca != NULL){//insere todos os elementos de ca em c
+		c = inserir (c, ca->numero);
+		ca = ca->prox;
+	}
+	
+	while (cb != NULL){//insere todos os elementos de cb em c
+		c = inserir (c, cb->numero);
+		cb = cb->prox;
+	}
+	
+	
+	return c;
+ }
+ 
+ //Subtrai um conjunto de outro.
+ conjunto * subtrair (conjunto * ca, conjunto * cb) {
+	
+	conjunto * c = NULL;
+	
+	//clona a lista ca para poder deletar os elementos sem perder a lista anterior.
+	c = somar (ca, NULL);
+	
+	while (cb != NULL){//remove os elementos de cb em ca.
+		c = remover_elemento (c, cb->numero);
+		cb = cb->prox;
+	}
+	
+	return c;
+ }
+ 
 
 //Realiza a uniao de dois conjuntos em um novo.
 conjunto * unir(conjunto * ca, conjunto * cb) {
 	
+	// A U B = (A - B) + B
+	
 	conjunto * uniao = NULL;
-
-    while (ca != NULL) {    //insere todo conjunto a em uniao
-		inserir(uniao, ca->numero);
-
-        ca = ca->prox;
+	conjunto * temp = NULL;//lista temporária para poder realizar o cálculo.
+	
+	temp = subtrair (ca, cb);
+	uniao = somar (temp,cb);
+	
+	/*Com o tratamento feito pela função inserir a poderiamos usar apenas a seguinte linha:
+	 *
+	 *uniao = somar (ca, cb);
+	 *poém qualquer alteração em inserir iria danificar a função, por isso opitei pela fórmula da teoria dos conjuntos. 
+	*/
+	
+	while(temp!=NULL){//limpa a lista temporária
+		temp = remover_elemento (temp, temp->numero);
 	}
-
-	while (cb != NULL) {     //percorre o conjunto b
-        // se o conjunto uniao nao tiver o elemento no qual o ponoteiro esta (lembrando que ele esta percorrendo a lista) insere esse elemeneto
-        if (verificar(uniao, cb->numero) == FALSE) {
-            inserir(uniao, cb->numero);
-        }
-
-		cb = cb->prox;
-	}
-
+	
     return uniao;
-
+	
+	
 }
 
 //Realiza a intersecao de dois conjunto em um novo.
 conjunto * intersec(conjunto * ca, conjunto * cb) {
-    //em um futuro sera preciso retornar ao inico da lista por isso um ponteiro pra percorrer e outro pra marcar o inicio
-    conjunto * intersecao = NULL;
-	conjunto * percorre_cb = cb;
-
-	while (ca != NULL) {   // percorre a lista a
-		while (percorre_cb != NULL) {     // percorre a lista b
-			if (ca->numero == percorre_cb->numero) {     // se algum elemento coencidir
-				inserir(intersecao, ca->numero);   // adicione esse elemento
-				break;      // e pare de percorrer a lista b
-			}
-
-			percorre_cb = percorre_cb->prox;
-		}
-
-		percorre_cb = cb;     //volta ao inicio da lista b, para comparar ela toda com o proximo elemento de a
-		ca = ca->prox;
-
+    
+	//A ∩ B = A - (A - B)
+	
+	conjunto * intersecao = NULL;
+	conjunto * temp = NULL;//lista temporária para poder realizar o cálculo.
+	
+	temp= subtrair (ca, cb);
+	intersecao = subtrair (ca, temp);
+	
+	while(temp!=NULL){//limpa a lista temporária
+		temp = remover_elemento (temp, temp->numero);
 	}
-
+	
     return intersecao;
 
 }
