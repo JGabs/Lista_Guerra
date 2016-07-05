@@ -1,11 +1,11 @@
-ERROS:
+﻿ERROS:
     verificar_contem usava ponteiros Ca e Cb que estavam declarado como ca e cb. CORRIGIDO!
 
     inserir usava ponteiros C que estava declarado como c. CORRIGIDO!
 
     remover_elemento está com erro ao remover o primeiro elemento. CORRIGIDO!
 
-    verificar_contem:
+    verificar_contem: CORRIGIDO!
         1) está com erro de lógica quando dois conjuntos são iguais e vazios. (código que gera o erra está no main.c, linhas 19 ~ 29)
 
         2) está com erro de lógica quando o primeiro conjunto é vazio e o segundo não. (código que gera o erra está no main.c, linhas 39 ~ 48)
